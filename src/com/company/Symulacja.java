@@ -8,7 +8,7 @@ public class Symulacja {
     private void decyzjeRobotnikow() {
         for (Robotnik rb: robotnicy) {
             if (rb.czyPracuje()) {
-                double wyprodukowane = rb.produkujPrzedmioty();
+                double wyprodukowane = rb.produkujPrzedmioty(gielda);
                 rb.wystawSprzedaz(gielda, wyprodukowane);
                 rb.wystawKupno(gielda);
             } else {

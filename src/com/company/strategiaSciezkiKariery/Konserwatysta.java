@@ -1,8 +1,8 @@
-package com.company.strategiaZmianyKariery;
+package com.company.strategiaSciezkiKariery;
 
 import com.company.sciezkaKariery.SciezkaKariery;
 
-public class Konserwatysta extends StrategiaZmianyKariery {
+public class Konserwatysta extends StrategiaSciezkiKariery {
 
     public Konserwatysta(SciezkaKariery sciezka) {
         super(sciezka);

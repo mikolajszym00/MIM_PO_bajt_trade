@@ -1,9 +1,20 @@
 package com.company.stratgiaProdukcji;
 
-import com.company.produkt.Produkt;
+import com.company.Cennik;
+import com.company.sciezkaKariery.SciezkaKariery;
+import com.company.strategiaSciezkiKariery.StrategiaSciezkiKariery;
+
+import java.util.Map;
 
 public abstract class StrategiaProdukcji {
-    private double[] wektorProd; // mapa
+    protected Map<SciezkaKariery, Double> produkcjaBazowa;
+    public abstract double produkujPrzedmioty(StrategiaSciezkiKariery kariera, Cennik cennik);
 
-    public abstract double produkujPrzedmioty(Produkt produkt);
+    protected double produkuj(StrategiaSciezkiKariery kariera, SciezkaKariery sciezka) { // powinien byc int
+        double baza = produkcjaBazowa.get(sciezka);
+        double premiaPoziom = kariera.dajWartoscPoziomu(sciezka) * baza;
+//        (karazaglod + narzedzia +
+//        double premiaProdukt = kariera.dajProdukt().premia();
+        return baza + premiaPoziom;
+    }
 }

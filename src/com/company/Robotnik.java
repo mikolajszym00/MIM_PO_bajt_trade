@@ -1,39 +1,42 @@
 package com.company;
 
-import com.company.produkt.Produkt;
-import com.company.sciezkaKariery.SciezkaKariery;
 import com.company.strategiaDnia.StrategiaDnia;
-import com.company.strategiaZmianyKariery.StrategiaZmianyKariery;
+import com.company.strategiaSciezkiKariery.StrategiaSciezkiKariery;
 import com.company.stratgiaProdukcji.StrategiaProdukcji;
 
 public class Robotnik extends Agent {
     int iloscProd;
-    int[] wektorProd; // ile jednostek tego produktu jest w stanie wyprodukować w jednej turze
 
     StrategiaDnia stDnia;
-    StrategiaZmianyKariery stZmianyKariery;
+    StrategiaSciezkiKariery kariera;
     StrategiaProdukcji stProdukcji;
 
-    public Robotnik(int iloscProd) {
+    public Robotnik(int iloscProd,
+                    StrategiaDnia stDnia,
+                    StrategiaSciezkiKariery kariera,
+                    StrategiaProdukcji stProdukcji) {
         this.iloscProd = iloscProd;
+
+        this.stDnia = stDnia;
+        this.kariera = kariera;
+        this.stProdukcji = stProdukcji;
     }
 
     public boolean czyPracuje() {
         return stDnia.czyPracuje();
     }
 
-    public double produkujPrzedmioty() {
-        Produkt produkt = stZmianyKariery.dajSciezke().dajProdukt();
-        return stProdukcji.produkujPrzedmioty(produkt);
+    public double produkujPrzedmioty(Gielda gielda) {
+        return stProdukcji.produkujPrzedmioty(kariera, gielda.dajCennik());
     }
 
     public void wystawSprzedaz(Gielda gielda, double wyprodukowane) {
-        gielda.dodajDoSprzedazy(this, stZmianyKariery.dajSciezke().dajProdukt(), wyprodukowane);
+        gielda.dodajDoSprzedazy(this, kariera.dajSciezke().dajProdukt(), wyprodukowane); // jeszcze chyba jakość będzie
     }
 
     public void wystawKupno(Gielda gielda) {
 
     }
 
-    public void uczSie() { stZmianyKariery.uczSie(); }
+    public void uczSie() { kariera.uczSie(); }
 }
