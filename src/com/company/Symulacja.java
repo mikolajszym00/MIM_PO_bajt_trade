@@ -3,18 +3,20 @@ package com.company;
 import com.company.gielda.Gielda;
 import com.company.produkt.Produkt;
 
+import java.util.ArrayList;
+
 public class Symulacja {
-    Robotnik[] robotnicy; // <- trzeba użyć kolekcji
-    Spekulant[] spekulanci; // <- trzeba użyć kolekcji
+    ArrayList<Robotnik> robotnicy;
+    ArrayList<Spekulant> spekulanci;
     Gielda gielda;
 
     private void decyzjeRobotnikow() {
         for (Robotnik rb: robotnicy) {
             if (rb.czyUmiera()) {
-//                wywal go z listy
+                robotnicy.remove(rb);
             } else {
                 if (rb.czyPracuje()) {
-                    Para<Produkt, Double> wyprodukowane = rb.produkujPrzedmioty(gielda);
+                    Oferta wyprodukowane = rb.produkujPrzedmioty(gielda);
                     rb.wystawSprzedaz(gielda, wyprodukowane);
                     rb.wystawKupno(gielda);
                 } else {

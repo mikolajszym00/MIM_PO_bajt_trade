@@ -29,22 +29,30 @@ public class Robotnik extends Agent {
         this.stProdukcji = stProdukcji;
     }
 
+    public double ileDiamentow() {
+        return majatek.dajDiamenty().ile();
+    }
+
     public boolean czyUmiera() { return majatek.dajJedzenie().czyUmiera(); }
 
     public boolean czyPracuje() {
         return stDnia.czyPracuje();
     }
 
-    public  Para<Produkt, Double> produkujPrzedmioty(Gielda gielda) {
+    public Oferta produkujPrzedmioty(Gielda gielda) { // co jesli diamenty + rozny poziom zaawansowania
         return stProdukcji.produkujPrzedmioty(majatek, gielda.dajCennik());
     }
 
-    public void wystawSprzedaz(Gielda gielda,  Para<Produkt, Double> doSprzedazy) {
-        gielda.dodajDoSprzedazy(this, doSprzedazy);
+    public void wystawSprzedaz(Gielda gielda,  Oferta doSprzedazy) {
+        if (Oferta.czyDopuszczony()) {
+            gielda.dodajDoSprzedazy(this, doSprzedazy);
+        } else {
+            // oferta to diamenty, trzeba dodac do zasobow lub dopiero po rundzie !!!
+        }
     }
 
     public void wystawKupno(Gielda gielda) {
-        Para<Produkt, Double> doKupna = stKupna.coKupuje(majatek);
+        Oferta doKupna = stKupna.coKupuje(majatek);
 
         gielda.dodajDoKupna(this, doKupna);
     }
