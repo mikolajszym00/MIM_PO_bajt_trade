@@ -1,5 +1,8 @@
 package com.company;
 
+import com.company.gielda.Gielda;
+import com.company.produkt.Produkt;
+
 public class Symulacja {
     Robotnik[] robotnicy; // <- trzeba użyć kolekcji
     Spekulant[] spekulanci; // <- trzeba użyć kolekcji
@@ -7,12 +10,16 @@ public class Symulacja {
 
     private void decyzjeRobotnikow() {
         for (Robotnik rb: robotnicy) {
-            if (rb.czyPracuje()) {
-                double wyprodukowane = rb.produkujPrzedmioty(gielda);
-                rb.wystawSprzedaz(gielda, wyprodukowane);
-                rb.wystawKupno(gielda);
+            if (rb.czyUmiera()) {
+//                wywal go z listy
             } else {
-                rb.uczSie();
+                if (rb.czyPracuje()) {
+                    Para<Produkt, Double> wyprodukowane = rb.produkujPrzedmioty(gielda);
+                    rb.wystawSprzedaz(gielda, wyprodukowane);
+                    rb.wystawKupno(gielda);
+                } else {
+                    rb.uczSie();
+                }
             }
         }
     }

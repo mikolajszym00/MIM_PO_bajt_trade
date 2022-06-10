@@ -1,25 +1,30 @@
 package com.company.stratgiaProdukcji;
 
-import com.company.Cennik;
-import com.company.sciezkaKariery.SciezkaKariery;
-import com.company.strategiaSciezkiKariery.StrategiaSciezkiKariery;
+import com.company.gielda.Cennik;
+import com.company.Majatek;
+import com.company.Para;
+import com.company.produkt.Produkt;
 
 public class Chciwy extends StrategiaProdukcji {
 
-    public double produkujPrzedmioty(StrategiaSciezkiKariery kariera, Cennik cennik) {
+    public Para<Produkt, Double> produkujPrzedmioty(Majatek majatek, Cennik cennik) {
         double maxZysk = 0;
         double maxZyskWyprodukowane = 0;
-        for (SciezkaKariery sciezka: cennik.dajSciezki()) {
-            double wyprodukowane = produkuj(kariera, sciezka);
-            double zysk = cennik.cenaDlaSciezki(sciezka) * wyprodukowane;
+        Produkt maxZyskProd = majatek.dajJedzenie();
 
-            if (zysk > maxZysk) {
+        for (Produkt prod: majatek.dajProdukty()) {
+            double wyprodukowane = produkuj(majatek, prod);
+            double zysk = cennik.cenaDlaProduktu(prod) * wyprodukowane;
+
+            if (zysk >= maxZysk) {
                 maxZysk = zysk;
                 maxZyskWyprodukowane = wyprodukowane;
+                maxZyskProd = prod;
             }
         }
 
-        return maxZyskWyprodukowane;
+//        majatek.dajProgKomp().usunProgramy()
+        return new Para<>(maxZyskProd, maxZyskWyprodukowane);
     }
 
 }

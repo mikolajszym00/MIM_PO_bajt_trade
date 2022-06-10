@@ -9,7 +9,7 @@ public class Konserwatysta extends StrategiaSciezkiKariery {
     }
 
     public SciezkaKariery wybierzSciezke() {
-        return sciezka;
+        return aktualnaSciezka;
     }
 
     public void ustawSciezke(SciezkaKariery sciezka) {}

@@ -1,15 +1,16 @@
 package com.company.stratgiaProdukcji;
 
-import com.company.Cennik;
-import com.company.sciezkaKariery.SciezkaKariery;
-import com.company.strategiaSciezkiKariery.StrategiaSciezkiKariery;
+import com.company.gielda.Cennik;
+import com.company.Majatek;
+import com.company.Para;
+import com.company.produkt.Produkt;
 
 public class Krotkowzroczny extends StrategiaProdukcji {
 
     @Override
-    public double produkujPrzedmioty(StrategiaSciezkiKariery kariera, Cennik cennik) {
-        SciezkaKariery najlepszaSciezka = cennik.SciezkaDlaMaxCeny();
+    public Para<Produkt, Double> produkujPrzedmioty(Majatek majatek, Cennik cennik) {
+        Produkt najlepszyProdukt = cennik.ProduktDlaMaxCeny();
 
-        return produkuj(kariera, najlepszaSciezka);
+        return new Para<>(najlepszyProdukt, produkuj(majatek, najlepszyProdukt));
     }
 }

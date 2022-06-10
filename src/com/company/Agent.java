@@ -1,4 +1,6 @@
 package com.company;
 
-public class Agent {
+public abstract class Agent {
+    private Integer id;
+    private String kariera;
 }
