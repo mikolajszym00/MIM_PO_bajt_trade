@@ -8,6 +8,8 @@ import com.company.produkt.Produkt;
 public class Czyscioszek extends StrategiaKupna {
 
     public Oferta coKupuje(Majatek majatek) {
-        return new Oferta(majatek.dajJedzenie(), 100.);
+        Oferta oferta = new Oferta();
+        oferta.dodaj(majatek.dajJedzenie(), 100.);
+        return oferta;
     }
 }

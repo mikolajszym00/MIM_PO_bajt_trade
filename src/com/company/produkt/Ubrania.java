@@ -11,12 +11,13 @@ public class Ubrania extends Produkt {
         this.karaZaBrakUbran = karaZaBrakUbran;
     }
 
-    public void zuzyjUbrania() {
-
+    private void zuzyjUbrania() {
 
     }
 
     public double dajPremieUbran() {
+        zuzyjUbrania(); // zuzywanie ubran
+
         if (iloscUbran < 100) {
             return karaZaBrakUbran;
         }

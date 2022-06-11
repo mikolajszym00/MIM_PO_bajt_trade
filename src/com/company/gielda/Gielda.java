@@ -34,27 +34,28 @@ public abstract class Gielda {
 
     public void dodajdoSprzedazySpekulant(Spekulant sp, Oferta oferta) {
         for (Pozycja pozycja: oferta.dajListePozycji()) {
-            Rynek rynek = rynkiProduktow.get(pozycja.dajProdukt());
-            rynek.dodajOferteSprzedazy(sp, pozycja);
+            Rynek rynek = rynkiProduktow.get(pozycja.prod);
+            rynek.dodajPozycjeSprzedazy(sp, pozycja);
         }
     }
 
     public void dodajDoKupnaSpekulant(Spekulant sp, Oferta oferta) {
         for (Pozycja pozycja: oferta.dajListePozycji()) {
-            Rynek rynek = rynkiProduktow.get(pozycja.dajProdukt());
-            rynek.dodajOferteKupna(sp, pozycja);
+            Rynek rynek = rynkiProduktow.get(pozycja.prod);
+            rynek.dodajPozycjeKupna(sp, pozycja);
         }
     }
 
     private void dopasujSprzedaz(Robotnik rb, Oferta oferta) {
-        Pozycja pozycja = oferta.dajPierwszaPozycje();
-        Rynek rynek = rynkiProduktow.get(pozycja.dajProdukt());
-        rynek.dopasujSprzedaz(rb, pozycja);
+        for (Pozycja pozycja: oferta.dajListePozycji()) {
+            Rynek rynek = rynkiProduktow.get(pozycja.prod);
+            rynek.dopasujSprzedaz(rb, pozycja);
+        }
     }
 
     private void dopasujKupno(Robotnik rb, Oferta oferta) {
         for (Pozycja pozycja: oferta.dajListePozycji()) {
-            Rynek rynek = rynkiProduktow.get(pozycja.dajProdukt());
+            Rynek rynek = rynkiProduktow.get(pozycja.prod);
             rynek.dopasujKupno(rb, pozycja);
         }
     }

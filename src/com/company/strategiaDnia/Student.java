@@ -18,7 +18,7 @@ public class Student extends StrategiaDnia {
         int[] noweCeny = cennik; // zle
 
         srednieCeny.usunNajstrasze();
-        srednieCeny.dodaj(srednia(noweCeny));
+        srednieCeny.dodaja(srednia(noweCeny));
 
         return zapas * srednia(srednieCeny) > majatek; // co to majatek
     }

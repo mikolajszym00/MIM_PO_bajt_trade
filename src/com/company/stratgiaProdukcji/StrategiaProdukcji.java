@@ -1,11 +1,16 @@
 package com.company.stratgiaProdukcji;
 
+import com.company.Para;
 import com.company.gielda.Cennik;
 import com.company.Majatek;
 import com.company.Oferta;
 import com.company.produkt.Produkt;
+import com.company.produkt.ProgKomp;
 
+import java.util.Collections;
 import java.util.Map;
+
+import static java.lang.Math.abs;
 
 public abstract class StrategiaProdukcji {
     protected Map<Produkt, Double> produkcjaBazowa;
@@ -24,24 +29,49 @@ public abstract class StrategiaProdukcji {
         return razem;
     }
 
-    protected Oferta stworzOferte(Produkt prod, double wyprodukowane) {
-        if (czyDiamenty() || czyJedznie()) {
-            return new Oferta(prod, wyprodukowane);
+    protected Oferta dostosujOferte(Produkt prod, Majatek majatek, double wyprodukowane) {
+        if (majatek.czyDiamenty(prod) || majatek.czyJedzenie(prod)) {
+            Oferta oferta = new Oferta();
+            oferta.dodaj(prod, wyprodukowane);
+
+            return oferta;
         } else {
-            if (czyProgKomp()) {
+            if (majatek.czyProgKomp(prod)) {
                 int poziom = prod.dajPoziom(); // tylko jesli to sciezka programisty inaczej 1
 
-                return new Oferta(prod, poziom, wyprodukowane);
-            } else {
-                return dostosujOferte(prod, wyprodukowane);
+                Oferta oferta = new Oferta();
+                oferta.dodaj(prod, wyprodukowane, poziom);
+
+                return oferta;
+            } else { // narzedzia ubrania
+                return stworzOferte(prod, majatek, wyprodukowane);
             }
         }
     }
 
-    private Oferta dostosujOferte(Produkt prod, double wyprodukowane) { //podzieli na jakosc jesli narzedzia/ubrania
-        return new Oferta(prod, wyprodukowane); // zle
+    private Oferta stworzOferte(Produkt prod, Majatek majatek, double wyprodukowane) { //podzieli na jakosc jesli narzedzia/ubrania
+        ProgKomp progKomp = majatek.dajProgKomp();
+        progKomp.posortuj(); // powinny byc posortowane malejaco
 
-//        musi usunac zuzyte programy
+        Oferta oferta = new Oferta();
+
+        for(Para jakoscIlosc: progKomp.dajposiadaneProgramy()) {
+            double ilosc = abs(jakoscIlosc.daj2() - wyprodukowane);
+
+            wyprodukowane -= ilosc;
+            jakoscIlosc.odejmij2(ilosc);
+
+            oferta.dodaj(prod, ilosc, jakoscIlosc.daj1());
+
+            if (wyprodukowane == 0) {
+                break;
+            }
+
+            if (jakoscIlosc.daj2() == 0) {
+                progKomp.usun(jakoscIlosc);
+            }
+        }
+
+        return oferta;
     }
-
 }

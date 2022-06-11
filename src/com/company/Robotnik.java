@@ -10,8 +10,6 @@ import com.company.stratgiaProdukcji.StrategiaProdukcji;
 public class Robotnik extends Agent {
     int iloscProd;
 
-    Majatek majatek;
-
     StrategiaDnia stDnia;
     StrategiaSciezkiKariery stSciezkiKariery;
     StrategiaProdukcji stProdukcji;
@@ -43,11 +41,11 @@ public class Robotnik extends Agent {
         return stProdukcji.produkujPrzedmioty(majatek, gielda.dajCennik());
     }
 
-    public void wystawSprzedaz(Gielda gielda,  Oferta doSprzedazy) {
-        if (Oferta.czyDopuszczony()) {
+    public void wystawSprzedaz(Gielda gielda, Oferta doSprzedazy) {
+        if (!doSprzedazy.czyDiamenty(majatek)) {
             gielda.dodajDoSprzedazy(this, doSprzedazy);
         } else {
-            // oferta to diamenty, trzeba dodac do zasobow lub dopiero po rundzie !!!
+            przychod(doSprzedazy.dajListePozycji().get(0).ilosc); // tylko diamenty tam są
         }
     }
 

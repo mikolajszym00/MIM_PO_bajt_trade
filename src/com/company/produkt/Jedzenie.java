@@ -18,15 +18,18 @@ public class Jedzenie extends Produkt {
             dniBezJedzenia = 0;
             iloscJedzenia -= 100;
         } else {
-//            co jesli pozmiedzy 0 100
+            iloscJedzenia = 0;
+            dodajGlod();
         }
     }
 
-    public void dodajGlod() {
+    private void dodajGlod() {
         dniBezJedzenia += 1;
     }
 
     public int dajPremieGlodu() {
+        nakarm();
+
         return premiaGlodu[dniBezJedzenia];
     }
 }

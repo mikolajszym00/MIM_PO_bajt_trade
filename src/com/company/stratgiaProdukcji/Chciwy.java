@@ -24,7 +24,7 @@ public class Chciwy extends StrategiaProdukcji {
             }
         }
 
-        return stworzOferte(maxZyskProd, maxZyskWyprodukowane);
+        return dostosujOferte(maxZyskProd, majatek, maxZyskWyprodukowane);
     }
 
 }

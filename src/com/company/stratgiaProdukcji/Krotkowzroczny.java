@@ -13,6 +13,6 @@ public class Krotkowzroczny extends StrategiaProdukcji {
 
         double wyprodukowane = produkuj(najlepszyProdukt, majatek);
 
-        return stworzOferte(najlepszyProdukt, wyprodukowane);
+        return dostosujOferte(najlepszyProdukt, majatek, wyprodukowane);
     }
 }

@@ -19,10 +19,10 @@ public abstract class StrategiaSciezkiKariery {
 
         if (this.aktualnaSciezka == sciezka) {
             // trzeba dodać jeden postepu
-            majatek.dajJedzenie().usunGlod(); // moze daj gdzies indziej zbiorowo
+            majatek.dajJedzenie().usunGlod();
         } else {
             ustawSciezke(sciezka);
-            majatek.dajJedzenie().nakarm(); //  chyba zle
+//            majatek.dajJedzenie().nakarm(); czy robotnik jak zmienia sciezke to je
         }
     }
 

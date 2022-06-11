@@ -10,4 +10,12 @@ public class Diamenty extends Produkt{
     public double ile() {
         return iloscDiamentow;
     }
+
+    public void dodaj(double wartosc) {
+        iloscDiamentow += wartosc;
+    }
+
+    public void odejmij(double wartosc) {
+        iloscDiamentow += wartosc;
+    }
 }

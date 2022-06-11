@@ -24,4 +24,12 @@ public class Majatek {
     }
 
     public Diamenty dajDiamenty() { return (Diamenty) produkty[3]; }
+
+    public ProgKomp dajProgKomp() { return (ProgKomp) produkty[4]; }
+
+    public boolean czyJedzenie(Produkt prod) { return prod == (Jedzenie) produkty[0]; }
+
+    public boolean czyDiamenty(Produkt prod) { return prod == (Diamenty) produkty[3]; }
+
+    public boolean czyProgKomp(Produkt prod) { return prod == (ProgKomp) produkty[4]; }
 }
