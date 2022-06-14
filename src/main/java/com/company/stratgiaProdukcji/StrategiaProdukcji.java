@@ -7,7 +7,6 @@ import com.company.Oferta;
 import com.company.produkt.Produkt;
 import com.company.produkt.ProgKomp;
 
-import java.util.Collections;
 import java.util.Map;
 
 import static java.lang.Math.abs;
@@ -55,7 +54,7 @@ public abstract class StrategiaProdukcji {
 
         Oferta oferta = new Oferta();
 
-        for(Para jakoscIlosc: progKomp.dajposiadaneProgramy()) {
+        for(Para jakoscIlosc: progKomp.ilePosiada()) {
             double ilosc = abs(jakoscIlosc.daj2() - wyprodukowane);
 
             wyprodukowane -= ilosc;

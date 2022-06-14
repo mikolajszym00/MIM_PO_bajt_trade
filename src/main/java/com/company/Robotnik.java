@@ -27,10 +27,6 @@ public class Robotnik extends Agent {
         this.stProdukcji = stProdukcji;
     }
 
-    public double ileDiamentow() {
-        return majatek.dajDiamenty().ile();
-    }
-
     public boolean czyUmiera() { return majatek.dajJedzenie().czyUmiera(); }
 
     public boolean czyPracuje() {

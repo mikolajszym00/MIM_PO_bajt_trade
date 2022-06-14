@@ -1,15 +1,17 @@
 package com.company.produkt;
 
-public class Diamenty extends Produkt{
-    double iloscDiamentow;
+import com.company.Para;
 
-    public void zmienIloscDiamentow(double ilosc) {
-        iloscDiamentow += ilosc;
-    }
+import java.util.ArrayList;
+
+public class Diamenty extends Produkt{
+    private double iloscDiamentow;
 
     public double ile() {
         return iloscDiamentow;
     }
+
+    public ArrayList<Para> ilePosiada() { return null; }
 
     public void dodaj(double wartosc) {
         iloscDiamentow += wartosc;

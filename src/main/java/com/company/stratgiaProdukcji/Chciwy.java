@@ -15,7 +15,7 @@ public class Chciwy extends StrategiaProdukcji {
 
         for (Produkt prod: majatek.dajProdukty()) {
             double wyprodukowane = produkuj(prod, majatek);
-            double zysk = cennik.cenaDlaProduktu(prod) * wyprodukowane;
+            double zysk = cennik.dajCenaWczoraj(prod) * wyprodukowane;
 
             if (zysk >= maxZysk) {
                 maxZysk = zysk;

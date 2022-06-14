@@ -3,13 +3,18 @@ package com.company.gielda;
 import com.company.Oferta;
 import com.company.Pozycja;
 import com.company.Robotnik;
-import com.company.produkt.Produkt;
+import com.company.produkt.*;
 import com.company.spekulant.Spekulant;
 
 import java.util.ArrayList;
 import java.util.Map;
 
 public abstract class Gielda {
+//    private final double programyCena;
+//    private final double jedzenie;
+//    private final double ubrania;
+//    private final double narzedzia;
+
     private Cennik cennik;
 
     protected ArrayList<Robotnik> listaRobotnikow;
@@ -17,6 +22,20 @@ public abstract class Gielda {
     private Map<Robotnik, Oferta> ofertyKupna;
 
     private Map<Produkt, Rynek> rynkiProduktow;
+
+//    public Gielda(Map<String, Double> ceny) {
+//        for(String s: ceny.keySet()) {
+//            switch ()
+//        }
+//
+//        this.cennik = new Cennik();
+//
+//        for(Produkt prod: {Jedzenie, Narzedzia, ProgKomp, Ubrania}) {
+//            rynkiProduktow.put(Jedzenie, new Rynek(cennik));
+//        }
+//
+//
+//    }
 
     protected abstract void sortuj();
 
@@ -67,6 +86,11 @@ public abstract class Gielda {
             dopasujSprzedaz(rb, ofertySprzedazy.get(rb));
             dopasujKupno(rb, ofertyKupna.get(rb));
         }
+    }
+
+    public void zakonczDzien() {
+        // spekulanci aktualizuja ceny
+        // studenci aktualizuja ceny
     }
 
 }

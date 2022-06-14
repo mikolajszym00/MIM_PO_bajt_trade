@@ -1,10 +1,12 @@
 package com.company;
 
 import com.company.produkt.Produkt;
+import com.company.spekulant.Spekulant;
 
 import java.util.ArrayList;
 
 public class Pozycja {
+    public Spekulant sp;
     public Produkt prod;
     public double ilosc;
     public double cena;
@@ -22,7 +24,8 @@ public class Pozycja {
 //        this.jakosc = jakosc;
 //    }
 
-    public Pozycja(Produkt prod, double ilosc, int jakosc, double cena) {
+    public Pozycja(Spekulant sp, Produkt prod, double ilosc, int jakosc, double cena) {
+        this.sp = sp;
         this.prod = prod;
         this.ilosc = ilosc;
         this.cena = cena;

@@ -12,6 +12,10 @@ public class Narzedzia extends Produkt {
 //        narzedzia
     }
 
+    public ArrayList<Para> ilePosiada() {
+        return narzedzia;
+    }
+
     public double dajPremieNarzedzi() {
         double razem = 0;
 

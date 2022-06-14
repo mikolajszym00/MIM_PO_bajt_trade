@@ -9,12 +9,16 @@ import java.util.ArrayList;
 import static java.lang.Math.*;
 
 public class Rynek {
+    Cennik cennik;
 
     ArrayList<Pozycja> pozycjeSprzedazySp; // sortowane po jakosci potem cenie??
     ArrayList<Pozycja> pozycjeKupnaSp; // sortowane po jakosci potem cenie??
 
+    public Rynek(Cennik cennik) {
+        this.cennik = cennik;
+    }
 
-    public void dodajPozycjeSprzedazy(Spekulant sp, Pozycja pozycja) {
+    public void dodajPozycjeSprzedazy(Spekulant sp, Pozycja pozycja) { // sp moze nie byc
         pozycjeSprzedazySp.add(pozycja); // trzba dodac spekulanta
     }
 
@@ -24,20 +28,22 @@ public class Rynek {
 
     public void dopasujSprzedaz(Robotnik rb, Pozycja pozycjaRb) {
         for(Pozycja pozycjaSp: pozycjeKupnaSp) {
-            Spekulant sp = pozycjaSp.dajSp(); // mozliwe ze pozycja bedzie miala dwa konstruktory jeden z spekulantem
+            Spekulant sp = pozycjaSp.sp;
 
-            double maxSpekulantKupi = floor(sp.dajDiamenty()/cennik.cena());
+            double maxSpekulantKupi = floor(sp.ileDiamentow()/pozycjaSp.cena);
             double maxIloscWymiany = abs(pozycjaSp.ilosc - pozycjaRb.ilosc);
 
             double iloscWymiany = min(maxSpekulantKupi, maxIloscWymiany);
 
-            rb.przychod(cennik.cena * iloscWymiany); // nalicza na rachunek ktory po gieldzie sie dodaje
+            rb.przychod(pozycjaSp.cena * iloscWymiany);
 
-            sp.koszt(cennik.cena * iloscWymiany);
-            sp.przychodProd(new Pozycja(pozycjaSp.prod, iloscWymiany, pozycjaRb.jakosc, -1));
+            sp.koszt(pozycjaSp.cena * iloscWymiany);
+            sp.przychodProd(new Pozycja(null, pozycjaSp.prod, iloscWymiany, pozycjaRb.jakosc, -1));
 
             pozycjaRb.ilosc -= iloscWymiany;
             pozycjaSp.ilosc -= iloscWymiany;
+
+            cennik.dodajDoSredniej(pozycjaSp.prod, pozycjaSp.cena, pozycjaSp.ilosc);
 
             if (pozycjaSp.ilosc == 0) {
                 pozycjeKupnaSp.remove(pozycjaSp);
@@ -48,23 +54,23 @@ public class Rynek {
             }
         }
         if (pozycjaRb.ilosc != 0) {
-            rb.przychod(cennik.cena * pozycjaRb.ilosc); // pewnie inna cena
+            rb.przychod(cennik.dajCenaWczoraj(pozycjaRb.prod) * pozycjaRb.ilosc);
         }
     }
 
     public void dopasujKupno(Robotnik rb, Pozycja pozycjaRb) {
         for(Pozycja pozycjaSp: pozycjeSprzedazySp) {
-            Spekulant sp = pozycjaSp.dajSp();
+            Spekulant sp = pozycjaSp.sp;
 
-            double maxRobotnikKupi = floor(rb.ileDiamentow()/cennik.cena()); // mozna wywalic do osobnej funkcji
+            double maxRobotnikKupi = floor(rb.ileDiamentow()/pozycjaSp.cena); // mozna wywalic do osobnej funkcji
             double maxIloscWymiany = abs(pozycjaSp.ilosc - pozycjaRb.ilosc);
 
             double iloscWymiany = min(maxRobotnikKupi, maxIloscWymiany);
 
-            rb.koszt(cennik.cena * iloscWymiany); // nalicza na rachunek ktory po gieldzie sie dodaje
-            rb.przychodProd(new Pozycja(pozycjaSp.prod, iloscWymiany, pozycjaRb.jakosc, -1));
+            rb.koszt(pozycjaSp.cena * iloscWymiany);
+            rb.przychodProd(new Pozycja(null, pozycjaSp.prod, iloscWymiany, pozycjaRb.jakosc, -1));
 
-            sp.przychod(cennik.cena * iloscWymiany);
+            sp.przychod(pozycjaSp.cena * iloscWymiany);
 
             pozycjaRb.ilosc -= iloscWymiany;
             pozycjaSp.ilosc -= iloscWymiany;

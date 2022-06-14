@@ -10,7 +10,7 @@ public class ProgKomp extends Produkt {
 
     private ArrayList<Para> posiadaneProgramy;
 
-    public ArrayList<Para> dajposiadaneProgramy() {
+    public ArrayList<Para> ilePosiada() {
         return posiadaneProgramy;
     }
 

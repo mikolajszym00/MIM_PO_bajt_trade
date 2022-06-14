@@ -3,8 +3,13 @@ package com.company;
 import com.company.produkt.Diamenty;
 
 public abstract class Agent {
-    Majatek majatek;
+    private int id;
 
+    protected Majatek majatek;
+
+    public double ileDiamentow() {
+        return majatek.dajDiamenty().ile();
+    }
 
     public void przychod(double wartosc) {
         Diamenty diamenty = majatek.dajDiamenty(); // mozna na biezaco
