@@ -1,11 +1,15 @@
 package com.company.produkt;
 
 import com.company.Para;
+import com.company.sciezkaKariery.Programista;
+import com.company.sciezkaKariery.SciezkaKariery;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 
 public class ProgKomp extends Produkt {
+    private final SciezkaKariery sciezka = new Programista();
+
     // tablica gdzie indeks to poziom programu a wartosc to ilosc takich
 
     private ArrayList<Para> posiadaneProgramy;

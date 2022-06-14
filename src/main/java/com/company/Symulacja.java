@@ -2,6 +2,7 @@ package com.company;
 
 import com.company.gielda.Gielda;
 import com.company.gielda.Kapitalistyczna;
+import com.company.gielda.Socjalistyczna;
 import com.company.spekulant.Spekulant;
 
 import java.util.ArrayList;
@@ -22,13 +23,22 @@ public class Symulacja {
 
         switch (typ) {
             case "socjalistyczna":
-                gielda =  new Kapitalistyczna(); //źle
+                gielda =  new Socjalistyczna();
+                break;
             case "kapitalistyczna":
                 gielda =  new Kapitalistyczna();
             default:
                 break;
         }
         return gielda;
+    }
+
+    public void symuluj() {
+        for(int i=0; i<dlugosc; i++) {
+            decyzjeRobotnikow();
+            decyzjeSpekulantow();
+            otworzGielde();
+        }
     }
 
     private void decyzjeRobotnikow() {
@@ -58,13 +68,4 @@ public class Symulacja {
         gielda.dopasujOferty();
         gielda.zakonczDzien();
     }
-
-//    private void ZuzywaniePrzedmiotow() { // najprwdopodobniej nie potrzebne
-//        for (Robotnik rb: robotnicy) {
-//            if (rb.czyPracuje()) {
-//                rb.zuzyjPrzemioty();
-//            }
-//        }
-//    }
-
 }

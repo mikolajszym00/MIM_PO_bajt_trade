@@ -15,7 +15,7 @@ public abstract class StrategiaProdukcji {
     protected Map<Produkt, Double> produkcjaBazowa;
     public abstract Oferta produkujPrzedmioty(Majatek kariera, Cennik cennik);
 
-    protected double produkuj(Produkt prod, Majatek majatek) { // powinien byc int
+    protected double produkuj(Produkt prod, Majatek majatek) {
         double baza = produkcjaBazowa.get(prod);
         double premiaPoziom = prod.dajWartoscPoziomu() * baza;
         double premiaGlod = majatek.dajJedzenie().dajPremieGlodu() * baza;
@@ -48,9 +48,9 @@ public abstract class StrategiaProdukcji {
         }
     }
 
-    private Oferta stworzOferte(Produkt prod, Majatek majatek, double wyprodukowane) { //podzieli na jakosc jesli narzedzia/ubrania
+    private Oferta stworzOferte(Produkt prod, Majatek majatek, double wyprodukowane) {
         ProgKomp progKomp = majatek.dajProgKomp();
-        progKomp.posortuj(); // powinny byc posortowane malejaco
+        progKomp.posortuj();
 
         Oferta oferta = new Oferta();
 

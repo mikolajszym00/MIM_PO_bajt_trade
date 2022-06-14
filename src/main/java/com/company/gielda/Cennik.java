@@ -2,12 +2,10 @@ package com.company.gielda;
 
 import com.company.produkt.Produkt;
 
-import java.util.Collections;
 import java.util.Map;
 
 public class Cennik {
     private Map<Produkt, Double> cenaWczoraj;
-    private Map<Produkt, Double> sredniaCenaWczoraj; // Wczoraj/Stara
     private Map<Produkt, Double> sumaCenDzis;
     private int iloscTransakcjiDzis;
 
@@ -23,8 +21,10 @@ public class Cennik {
 //    }
 
     public Produkt ProduktDlaMaxCeny() { // naprawic
-        double maxCena = Collections.max(ceny);
-        return produkty.get(ceny.indexOf(maxCena));
+//        double maxCena = Collections.max(sumaCenDzis);
+//        return produkty.get(sumaCenDzis.indexOf(maxCena));
+
+        return null;
     }
 
     public double dajCenaWczoraj(Produkt prod) {
@@ -36,5 +36,12 @@ public class Cennik {
         ++iloscTransakcjiDzis;
     }
 
-    // trzeba jeszcze ustwic nowe ceny
+    public void aktualizujCeny() {
+        for(Produkt prod: cenaWczoraj.keySet()) {
+            cenaWczoraj.replace(prod, sumaCenDzis.get(prod)/iloscTransakcjiDzis);
+
+            sumaCenDzis.replace(prod, 0.);
+            iloscTransakcjiDzis = 0;
+        }
+    }
 }

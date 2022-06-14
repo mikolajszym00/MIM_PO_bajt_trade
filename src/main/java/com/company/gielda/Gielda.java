@@ -18,6 +18,7 @@ public abstract class Gielda {
     private Cennik cennik;
 
     protected ArrayList<Robotnik> listaRobotnikow;
+    protected ArrayList<Spekulant> listaSpekulantow;
     private Map<Robotnik, Oferta> ofertySprzedazy;
     private Map<Robotnik, Oferta> ofertyKupna;
 
@@ -52,6 +53,8 @@ public abstract class Gielda {
     }
 
     public void dodajdoSprzedazySpekulant(Spekulant sp, Oferta oferta) {
+        listaSpekulantow.add(sp);
+
         for (Pozycja pozycja: oferta.dajListePozycji()) {
             Rynek rynek = rynkiProduktow.get(pozycja.prod);
             rynek.dodajPozycjeSprzedazy(sp, pozycja);
@@ -89,8 +92,12 @@ public abstract class Gielda {
     }
 
     public void zakonczDzien() {
-        // spekulanci aktualizuja ceny
-        // studenci aktualizuja ceny
+        cennik.aktualizujCeny();
+
+        for(Spekulant sp: listaSpekulantow) {
+            sp.aktualizujSrednieCeny(cennik);
+            sp.usunPrzedmioty();
+        }
     }
 
 }

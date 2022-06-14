@@ -1,11 +1,14 @@
 package com.company.produkt;
 
-import com.company.Oferta;
 import com.company.Para;
+import com.company.sciezkaKariery.Inzynier;
+import com.company.sciezkaKariery.SciezkaKariery;
 
 import java.util.ArrayList;
 
 public class Narzedzia extends Produkt {
+    private final SciezkaKariery sciezka = new Inzynier();
+
     private ArrayList<Para> narzedzia;
 
     public void dodajNarzedzia() {

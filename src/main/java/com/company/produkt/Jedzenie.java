@@ -1,10 +1,14 @@
 package com.company.produkt;
 
 import com.company.Para;
+import com.company.sciezkaKariery.Rolnik;
+import com.company.sciezkaKariery.SciezkaKariery;
 
 import java.util.ArrayList;
 
 public class Jedzenie extends Produkt {
+    private final SciezkaKariery sciezka = new Rolnik();
+
     private int iloscJedzenia;
     private int dniBezJedzenia;
     private final int[] premiaGlodu = {0, -1, -3};

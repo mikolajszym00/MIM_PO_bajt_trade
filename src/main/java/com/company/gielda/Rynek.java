@@ -18,12 +18,12 @@ public class Rynek {
         this.cennik = cennik;
     }
 
-    public void dodajPozycjeSprzedazy(Spekulant sp, Pozycja pozycja) { // sp moze nie byc
-        pozycjeSprzedazySp.add(pozycja); // trzba dodac spekulanta
+    public void dodajPozycjeSprzedazy(Spekulant sp, Pozycja pozycja) {
+        pozycjeSprzedazySp.add(pozycja);
     }
 
     public void dodajPozycjeKupna(Spekulant sp, Pozycja pozycja) {
-        pozycjeKupnaSp.add(pozycja); // trzba dodac spekulanta
+        pozycjeKupnaSp.add(pozycja);
     }
 
     public void dopasujSprzedaz(Robotnik rb, Pozycja pozycjaRb) {

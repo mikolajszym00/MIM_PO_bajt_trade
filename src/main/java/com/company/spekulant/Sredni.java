@@ -2,6 +2,7 @@ package com.company.spekulant;
 
 import com.company.Oferta;
 import com.company.Para;
+import com.company.gielda.Cennik;
 import com.company.gielda.Gielda;
 import com.company.produkt.Produkt;
 
@@ -52,8 +53,21 @@ public class Sredni extends Spekulant {
         }
     }
 
-//    public aktualizujSrednieCeny() { // i usun przedmioty
-//
-//    }
+    public void aktualizujSrednieCeny(Cennik cennik) {
+        if (srednieCeny.size() >= historia_spekulanta_sredniego) {
+            for(Produkt prod: srednieCeny.keySet()) {
+                srednieCeny.get(prod).remove(0);
+            }
+        }
+
+        for(Produkt prod: srednieCeny.keySet()) {
+            srednieCeny.get(prod).add(cennik.dajCenaWczoraj(prod)); // cena aktualna
+        }
+
+    }
+
+    public void usunPrzedmioty() {
+
+    }
 
 }
