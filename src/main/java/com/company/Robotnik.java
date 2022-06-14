@@ -29,8 +29,8 @@ public class Robotnik extends Agent {
 
     public boolean czyUmiera() { return majatek.dajJedzenie().czyUmiera(); }
 
-    public boolean czyPracuje() {
-        return stDnia.czyPracuje();
+    public boolean czyPracuje(Gielda gielda, int dzienSymulacji) {
+        return stDnia.czyPracuje(gielda.dajCennik(), majatek, dzienSymulacji);
     }
 
     public Oferta produkujPrzedmioty(Gielda gielda) { // co jesli diamenty + rozny poziom zaawansowania

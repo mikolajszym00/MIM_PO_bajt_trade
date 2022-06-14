@@ -1,6 +1,7 @@
 package com.company.strategiaDnia;
 
 import com.company.Majatek;
+import com.company.gielda.Cennik;
 
 public class Oszczedny extends StrategiaDnia{
     double limitDiamentow;
@@ -10,13 +11,7 @@ public class Oszczedny extends StrategiaDnia{
     }
 
     @Override
-    public boolean czyPracuje(Majatek kariera) {
-        if (kariera.dajDiamenty().ile() > limitDiamentow) {
-            return false;
-        }
-
-        return true;
+    public boolean czyPracuje(Cennik cennik, Majatek majatek, int dzienSymulacji) {
+        return !(majatek.dajDiamenty().ile() > limitDiamentow);
     }
-
-
 }

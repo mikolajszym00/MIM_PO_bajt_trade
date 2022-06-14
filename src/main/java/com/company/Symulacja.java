@@ -36,7 +36,7 @@ public class Symulacja {
             if (rb.czyUmiera()) {
                 robotnicy.remove(rb);
             } else {
-                if (rb.czyPracuje()) {
+                if (rb.czyPracuje(gielda, dlugosc)) {
                     Oferta wyprodukowane = rb.produkujPrzedmioty(gielda);
                     rb.wystawSprzedaz(gielda, wyprodukowane);
                     rb.wystawKupno(gielda);
