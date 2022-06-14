@@ -33,6 +33,11 @@ public class Symulacja {
         return gielda;
     }
 
+    public Symulacja(ArrayList<Robotnik> robotnicy, ArrayList<Spekulant> spekulanci) {
+        this.robotnicy = robotnicy;
+        this.spekulanci = spekulanci;
+    }
+
     public void symuluj() {
         for(int i=0; i<dlugosc; i++) {
             decyzjeRobotnikow();

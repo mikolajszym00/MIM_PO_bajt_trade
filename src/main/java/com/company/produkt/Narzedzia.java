@@ -29,7 +29,7 @@ public class Narzedzia extends Produkt {
             razem += jakosc * ilosc;
         }
 
-        narzedzia.clear(); // usuwamy narzedzia
+        narzedzia.clear(); // usuwam narzedzia
 
         return razem/100;
     }

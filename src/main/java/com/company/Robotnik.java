@@ -8,21 +8,18 @@ import com.company.strategiaSciezkiKariery.StrategiaSciezkiKariery;
 import com.company.stratgiaProdukcji.StrategiaProdukcji;
 
 public class Robotnik extends Agent {
-    int iloscProd;
-
     StrategiaDnia stDnia;
     StrategiaSciezkiKariery stSciezkiKariery;
     StrategiaProdukcji stProdukcji;
     StrategiaKupna stKupna;
 
-    public Robotnik(int iloscProd,
-                    StrategiaDnia stDnia,
+    public Robotnik(StrategiaDnia stDnia,
                     StrategiaSciezkiKariery stSciezkiKariery,
                     Majatek majatek,
                     StrategiaProdukcji stProdukcji) {
-        this.iloscProd = iloscProd;
 
         this.stDnia = stDnia;
+        this.stSciezkiKariery = stSciezkiKariery;
         this.majatek = majatek;
         this.stProdukcji = stProdukcji;
     }
@@ -33,7 +30,7 @@ public class Robotnik extends Agent {
         return stDnia.czyPracuje(gielda.dajCennik(), majatek, dzienSymulacji);
     }
 
-    public Oferta produkujPrzedmioty(Gielda gielda) { // co jesli diamenty + rozny poziom zaawansowania
+    public Oferta produkujPrzedmioty(Gielda gielda) {
         return stProdukcji.produkujPrzedmioty(majatek, gielda.dajCennik());
     }
 
@@ -41,7 +38,7 @@ public class Robotnik extends Agent {
         if (!doSprzedazy.czyDiamenty(majatek)) {
             gielda.dodajDoSprzedazy(this, doSprzedazy);
         } else {
-            przychod(doSprzedazy.dajListePozycji().get(0).ilosc); // tylko diamenty tam są
+            przychod(doSprzedazy.dajListePozycji().get(0).ilosc); // diamenty
         }
     }
 

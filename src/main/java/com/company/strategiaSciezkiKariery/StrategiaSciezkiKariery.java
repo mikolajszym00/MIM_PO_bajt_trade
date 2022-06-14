@@ -22,7 +22,6 @@ public abstract class StrategiaSciezkiKariery {
             majatek.dajJedzenie().usunGlod();
         } else {
             ustawSciezke(sciezka);
-//            majatek.dajJedzenie().nakarm(); czy robotnik jak zmienia sciezke to je
         }
     }
 

@@ -10,8 +10,6 @@ import java.util.Comparator;
 public class ProgKomp extends Produkt {
     private final SciezkaKariery sciezka = new Programista();
 
-    // tablica gdzie indeks to poziom programu a wartosc to ilosc takich
-
     private ArrayList<Para> posiadaneProgramy;
 
     public ArrayList<Para> ilePosiada() {

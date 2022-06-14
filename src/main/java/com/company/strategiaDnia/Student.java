@@ -12,11 +12,6 @@ public class Student extends StrategiaDnia {
 
     ArrayList<Double> srednieCeny;
 
-
-//    public Student(Gielda gielda) {
-//        this.gielda = gielda;
-//    }
-
     private double srednia() {
         double suma = 0;
 

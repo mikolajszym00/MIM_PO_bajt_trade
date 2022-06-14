@@ -15,8 +15,6 @@ public class Ubrania extends Produkt {
 
     private ArrayList<Para> posiadaneUbrania;
 
-    // zuzycie ubran to tablica gdzie indeks to jakosc a wartosc to ilosc // arraylist
-
     public Ubrania(double karaZaBrakUbran) {
         this.karaZaBrakUbran = karaZaBrakUbran;
     }
@@ -32,7 +30,7 @@ public class Ubrania extends Produkt {
     public double ilePosiadaLacznie() { return iloscUbran; };
 
     public double dajPremieUbran() {
-        zuzyjUbrania(); // zuzywanie ubran
+        zuzyjUbrania();
 
         if (iloscUbran < 100) {
             return karaZaBrakUbran;
